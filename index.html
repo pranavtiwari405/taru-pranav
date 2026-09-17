@@ -3,491 +3,749 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taru × Pranav — The Apology Case ❤️</title>
+<title>Taru × Pranav — I'm Sorry ❤️</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  background:#09070a;
-  color:#f8edf1;
-  font-family:Poppins,sans-serif;
-  overflow-x:hidden;
-}
-
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 10%,rgba(183,76,110,.18),transparent 30%),
-    radial-gradient(circle at 80% 80%,rgba(255,120,150,.10),transparent 30%);
-  pointer-events:none;
-  z-index:-1;
+    font-family:'Poppins',sans-serif;
+    background:#080812;
+    color:white;
+    overflow-x:hidden;
 }
 
 section{
-  padding:80px 20px;
-  max-width:900px;
-  margin:auto;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:70px 20px;
+    position:relative;
 }
+
+/* BACKGROUND */
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    background:
+        radial-gradient(circle at 20% 20%,#46152e 0%,transparent 30%),
+        radial-gradient(circle at 80% 70%,#25124a 0%,transparent 35%),
+        linear-gradient(135deg,#080812,#120816,#080812);
+}
+
+.glow{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:#ff3864;
+    filter:blur(130px);
+    opacity:.12;
+    z-index:-4;
+    animation:float 8s infinite alternate ease-in-out;
+}
+
+.glow.one{
+    top:5%;
+    left:-100px;
+}
+
+.glow.two{
+    bottom:0;
+    right:-100px;
+    background:#a855f7;
+    animation-delay:2s;
+}
+
+@keyframes float{
+    from{transform:translateY(-30px)}
+    to{transform:translateY(40px)}
+}
+
+/* HEARTS */
+
+.heart{
+    position:fixed;
+    bottom:-50px;
+    font-size:20px;
+    opacity:.5;
+    animation:rise linear infinite;
+    z-index:-1;
+}
+
+@keyframes rise{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    20%{opacity:.7}
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* HERO */
 
 .hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:30px 20px;
+    text-align:center;
 }
 
-.small{
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-size:12px;
-  color:#d9a9b8;
-  margin-bottom:20px;
+.badge{
+    display:inline-block;
+    border:1px solid rgba(255,255,255,.2);
+    padding:9px 18px;
+    border-radius:50px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(10px);
+    font-size:13px;
+    margin-bottom:25px;
 }
 
-h1,h2{
-  font-family:"Cormorant Garamond",serif;
-}
-
-.hero h1{
-  font-size:clamp(48px,13vw,100px);
-  line-height:.9;
-  font-weight:600;
-}
-
-.hero h1 span{
-  color:#e89aae;
+h1{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(55px,12vw,110px);
+    line-height:.95;
+    background:linear-gradient(135deg,#fff,#ff9db3,#fff);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
 .subtitle{
-  margin-top:25px;
-  max-width:600px;
-  color:#cbbec3;
-  line-height:1.8;
-}
-
-.heart{
-  font-size:55px;
-  margin:25px 0;
-  animation:pulse 1.6s infinite;
-}
-
-@keyframes pulse{
-  50%{transform:scale(1.15)}
+    margin:25px auto;
+    max-width:600px;
+    color:#c9c1ca;
+    line-height:1.8;
+    font-size:16px;
 }
 
 .btn{
-  display:inline-block;
-  margin-top:30px;
-  padding:15px 28px;
-  border-radius:50px;
-  background:#d66b86;
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-  box-shadow:0 10px 30px rgba(214,107,134,.25);
-  border:0;
-  cursor:pointer;
+    border:0;
+    padding:15px 27px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#ff4268,#a855f7);
+    color:white;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 10px 35px rgba(255,50,100,.25);
+    transition:.3s;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
+    transform:translateY(-3px) scale(1.03);
+}
+
+.scroll{
+    position:absolute;
+    bottom:25px;
+    font-size:12px;
+    color:#777;
+}
+
+/* CARD */
+
+.wrap{
+    width:min(720px,100%);
+}
+
+.kicker{
+    color:#ff8ba4;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.title{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(38px,8vw,65px);
+    margin-bottom:25px;
 }
 
 .card{
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:25px;
-  padding:30px;
-  margin-top:25px;
-  backdrop-filter:blur(10px);
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:28px;
+    padding:35px;
+    backdrop-filter:blur(18px);
+    box-shadow:0 20px 80px rgba(0,0,0,.35);
 }
 
-h2{
-  font-size:42px;
-  margin-bottom:15px;
+.card p{
+    color:#d0c9d2;
+    line-height:2;
+    margin-bottom:18px;
 }
 
-p{
-  color:#d4c8cc;
-  line-height:1.8;
+/* CASE FILE */
+
+.case{
+    border-left:3px solid #ff5778;
+    padding-left:22px;
 }
 
-.case-number{
-  color:#e89aae;
-  font-size:13px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  margin-bottom:10px;
+.case-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:13px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.evidence{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:30px;
+.case-row span:first-child{
+    color:#888;
 }
 
-.evidence img{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.15);
-  transition:.4s;
+.case-row span:last-child{
+    text-align:right;
 }
 
-.evidence img:hover{
-  transform:scale(1.03);
+/* PHOTOS */
+
+.photos{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:25px;
 }
 
-.charge{
-  margin:14px 0;
-  padding:18px;
-  border-radius:15px;
-  background:rgba(255,255,255,.04);
-  border-left:3px solid #d66b86;
+.photo{
+    height:230px;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.12);
 }
 
-.charge b{
-  color:#f0b1c0;
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
 }
 
-.verdict{
-  text-align:center;
-  padding:45px 25px;
-  border:1px solid #9c5269;
-  border-radius:25px;
-  background:linear-gradient(145deg,rgba(151,61,88,.16),rgba(255,255,255,.03));
-}
-
-.verdict h2{
-  font-size:55px;
-  color:#efa2b5;
-}
-
-.big{
-  font-size:20px;
-  margin:20px 0;
-}
-
-.reveal{
-  display:none;
-  margin-top:25px;
-  animation:fade .6s ease;
-}
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.letter{
-  font-family:"Cormorant Garamond",serif;
-  font-size:23px;
-  line-height:1.7;
-  color:#eadde1;
-}
-
-.signature{
-  margin-top:25px;
-  color:#e89aae;
-  font-size:20px;
-}
-
-footer{
-  text-align:center;
-  padding:50px 20px;
-  color:#806d74;
-  font-size:12px;
+.photo:hover img{
+    transform:scale(1.08);
 }
 
 @media(max-width:600px){
-  section{
-    padding:65px 18px;
-  }
+    .photos{
+        grid-template-columns:1fr;
+    }
 
-  .hero{
-    min-height:95vh;
-  }
+    .photo{
+        height:300px;
+    }
 
-  h2{
-    font-size:36px;
-  }
+    .card{
+        padding:25px 20px;
+    }
+}
 
-  .evidence{
-    grid-template-columns:1fr;
-  }
+/* EFFORTS */
 
-  .evidence img{
-    aspect-ratio:4/3;
-  }
+.efforts{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
 
-  .card{
-    padding:24px;
-  }
+.effort{
+    padding:22px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.035);
+    border-radius:20px;
+}
+
+.effort b{
+    display:block;
+    margin-bottom:8px;
+}
+
+.effort span{
+    color:#aaa;
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* VERDICT */
+
+.verdict{
+    text-align:center;
+}
+
+.big-heart{
+    font-size:80px;
+    animation:beat 1.4s infinite;
+}
+
+@keyframes beat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.15)}
+}
+
+.final-message{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(35px,7vw,60px);
+    line-height:1.2;
+    margin:20px auto;
+}
+
+.signature{
+    color:#ff9db3;
+    margin-top:25px;
+}
+
+/* MUSIC */
+
+.music{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 14px;
+    border-radius:50px;
+    background:rgba(20,15,25,.85);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+}
+
+.music button{
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:#ff4268;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.music small{
+    color:#ccc;
+}
+
+/* NAV */
+
+.nav{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:40;
+    display:flex;
+    gap:5px;
+    padding:7px;
+    background:rgba(10,8,15,.7);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:50px;
+    backdrop-filter:blur(15px);
+}
+
+.nav a{
+    color:#aaa;
+    text-decoration:none;
+    padding:8px 14px;
+    font-size:12px;
+}
+
+.nav a:hover{
+    color:white;
+}
+
+@media(max-width:600px){
+    .nav a{
+        padding:7px 8px;
+        font-size:10px;
+    }
+
+    .music small{
+        display:none;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
-  <div class="small">A very serious matter</div>
+<div class="bg"></div>
+<div class="glow one"></div>
+<div class="glow two"></div>
 
-  <h1>Taru <span>×</span> Pranav</h1>
+<!-- FLOATING HEARTS -->
 
-  <div class="heart">❤️</div>
+<div class="heart" style="left:5%;animation-duration:9s;">❤️</div>
+<div class="heart" style="left:15%;animation-duration:12s;animation-delay:2s;">♡</div>
+<div class="heart" style="left:28%;animation-duration:10s;animation-delay:4s;">❤️</div>
+<div class="heart" style="left:42%;animation-duration:14s;">💗</div>
+<div class="heart" style="left:57%;animation-duration:11s;animation-delay:3s;">♡</div>
+<div class="heart" style="left:70%;animation-duration:13s;">❤️</div>
+<div class="heart" style="left:85%;animation-duration:10s;animation-delay:5s;">💗</div>
 
-  <h2>The Apology Case</h2>
+<!-- NAVIGATION -->
 
-  <p class="subtitle">
-    In the matter of <b>Pranav</b> versus the very angry but very loved
-    <b>Taru</b> — one apology, three pieces of evidence, and one extremely
-    hopeful defendant.
-  </p>
+<div class="nav">
+    <a href="#home">Home</a>
+    <a href="#apology">Apology</a>
+    <a href="#effort">Effort</a>
+    <a href="#final">Final</a>
+</div>
 
-  <a href="#case" class="btn">Enter the Courtroom ↓</a>
-</section>
+<!-- MUSIC -->
 
+<div class="music">
+    <button id="musicBtn" onclick="toggleMusic()">▶</button>
+    <small id="musicText">Our little soundtrack</small>
+</div>
 
-<section id="case">
+<!-- HERO -->
 
-  <div class="case-number">Case No. 26-04 ❤️</div>
+<section id="home" class="hero">
 
-  <h2>Statement of the Defendant</h2>
+    <div>
+        <div class="badge">A VERY SERIOUS CASE ❤️</div>
 
-  <div class="card">
-    <p>
-      Your Honour, I hereby admit that I did something in the afternoon
-      that I absolutely should not have done.
-    </p>
+        <h1>Taru × Pranav</h1>
 
-    <br>
+        <p class="subtitle">
+            This isn't just another apology.<br>
+            It's my ridiculously dramatic attempt to tell you
+            that I'm genuinely sorry.
+        </p>
 
-    <p>
-      I know saying "sorry" doesn't magically undo it.
-      So instead of making excuses, I just want to say this:
-    </p>
+        <button class="btn" onclick="document.getElementById('apology').scrollIntoView()">
+            Open the case 💌
+        </button>
+    </div>
 
-    <br>
-
-    <p>
-      <b>I'm genuinely sorry, Taru.</b>
-      I never wanted to hurt you, upset you, or make you feel like
-      your feelings didn't matter.
-    </p>
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="case-number">Exhibit A</div>
-
-  <h2>Evidence of Us</h2>
-
-  <p>
-    Because even in the middle of a courtroom drama,
-    there has to be some proof that what we have means something.
-  </p>
-
-  <div class="evidence">
-
-    <img src="assets/memory1.jpeg" alt="Our memory">
-
-    <img src="assets/memory2.jpeg" alt="Our memory">
-
-    <img src="assets/memory3.jpeg" alt="Our memory">
-
-  </div>
+    <div class="scroll">↓ keep scrolling</div>
 
 </section>
 
+<!-- APOLOGY -->
 
-<section>
+<section id="apology">
 
-  <div class="case-number">The Charges</div>
+<div class="wrap">
 
-  <h2>Charges Against Pranav</h2>
+    <div class="kicker">CASE FILE #001</div>
 
-  <div class="charge">
-    <b>Charge #01</b><br>
-    Making Taru upset.
-  </div>
+    <div class="title">The Incident.</div>
 
-  <div class="charge">
-    <b>Charge #02</b><br>
-    Doing something he knew he shouldn't have done.
-  </div>
+    <div class="card">
 
-  <div class="charge">
-    <b>Charge #03</b><br>
-    Being stupid enough to risk hurting the person he loves.
-  </div>
+        <div class="case">
 
-  <div class="charge">
-    <b>Charge #04</b><br>
-    Thinking one "sorry" would be enough.
-  </div>
+            <div class="case-row">
+                <span>Accused</span>
+                <span>Pranav</span>
+            </div>
 
-</section>
+            <div class="case-row">
+                <span>Victim</span>
+                <span>Taru ❤️</span>
+            </div>
 
+            <div class="case-row">
+                <span>Crime</span>
+                <span>Doing something I shouldn't have.</span>
+            </div>
 
-<section>
+            <div class="case-row">
+                <span>Time</span>
+                <span>The afternoon incident.</span>
+            </div>
 
-  <div class="verdict">
+            <div class="case-row">
+                <span>Regret level</span>
+                <span>∞ / 10</span>
+            </div>
 
-    <div class="case-number">Final Hearing</div>
-
-    <h2>Your Honour...</h2>
-
-    <p class="big">
-      The defendant has one final statement.
-    </p>
-
-    <button class="btn" onclick="showApology()">
-      Hear the Defendant ❤️
-    </button>
-
-    <div class="reveal" id="apology">
-
-      <p class="letter">
-        Taru,
-        <br><br>
-
-        I know I messed up.
-        I know I should have handled things differently.
-        And I'm not going to hide behind excuses.
-
-        <br><br>
-
-        I'm sorry for what I did and, more importantly,
-        I'm sorry that I hurt you.
-
-        <br><br>
-
-        You mean far too much to me for me to let one stupid
-        moment become bigger than everything we've shared.
-
-        <br><br>
-
-        I can't promise that I'll never make a mistake again,
-        because I'm human.
-
-        But I can promise that I'll learn from this one,
-        listen better, and be more careful with your heart.
-
-        <br><br>
-
-        I don't expect you to forgive me instantly.
-
-        I just hope you know that
-        <b>I'm genuinely sorry.</b>
-
-        <br><br>
-
-        And if the court allows it...
+        </div>
 
         <br>
 
-        I'd really like to keep being the person
-        who gets to make you smile. ❤️
-      </p>
+        <p>
+            I know what I did wasn't something I was supposed to do.
+            I'm not going to make excuses for it.
+        </p>
 
-      <div class="signature">
-        — Your very guilty defendant,<br>
-        Pranav ❤️
-      </div>
+        <p>
+            I messed up. And more importantly, I know that
+            it hurt you.
+        </p>
+
+        <p>
+            So this website exists for one very simple reason:
+        </p>
+
+        <p style="text-align:center;font-size:22px;color:#ff9db3;">
+            I'm genuinely sorry, Taru. ❤️
+        </p>
 
     </div>
 
-  </div>
+</div>
 
 </section>
 
+<!-- PHOTOS -->
 
 <section>
 
-  <div class="card" style="text-align:center">
+<div class="wrap">
 
-    <div class="case-number">Sentencing</div>
+    <div class="kicker">Exhibit A</div>
 
-    <h2>Possible Sentence</h2>
+    <div class="title">The good stuff.</div>
 
-    <p>
-      The defendant humbly requests:
-    </p>
+    <div class="card">
 
-    <br>
+        <p>
+            Because one stupid incident doesn't erase all the
+            moments that mean everything to me.
+        </p>
 
-    <p>
-      ☑ One chance to make things right<br>
-      ☑ Unlimited hugs<br>
-      ☑ Lifetime supply of love<br>
-      ☑ Permission to keep annoying Taru<br>
-      ☑ And absolutely no more stupid afternoon incidents
-    </p>
+        <div class="photos">
 
-    <button class="btn" onclick="finalMessage()">
-      Deliver the Verdict ❤️
-    </button>
+            <!--
+            PUT YOUR PHOTOS INSIDE THE assets FOLDER
+            AND NAME THEM:
 
-    <div class="reveal" id="final">
+            photo1.jpg
+            photo2.jpg
+            photo3.jpg
+            photo4.jpg
+            -->
 
-      <br>
+            <div class="photo">
+                <img src="assets/photo1.jpg" alt="Our memory">
+            </div>
 
-      <h2>Verdict: ❤️</h2>
+            <div class="photo">
+                <img src="assets/photo2.jpg" alt="Our memory">
+            </div>
 
-      <p>
-        Whatever the verdict is...
-        thank you for hearing my case, Moonlight.
-      </p>
+            <div class="photo">
+                <img src="assets/photo3.jpg" alt="Our memory">
+            </div>
 
-      <br>
+            <div class="photo">
+                <img src="assets/photo4.jpg" alt="Our memory">
+            </div>
 
-      <p>
-        I love you.
-      </p>
+        </div>
 
     </div>
 
-  </div>
+</div>
 
 </section>
 
+<!-- EFFORT -->
 
-<footer>
-  Made with love, guilt, and a dangerously high amount of feelings. ❤️
-  <br><br>
-  © Taru × Pranav
-</footer>
+<section id="effort">
 
+<div class="wrap">
+
+    <div class="kicker">Evidence of effort</div>
+
+    <div class="title">My defence.</div>
+
+    <div class="card">
+
+        <p>
+            Your Honour, I would like to present the following
+            evidence in my defence:
+        </p>
+
+        <div class="efforts">
+
+            <div class="effort">
+                <b>01 — I know I messed up.</b>
+                <span>
+                    No excuses. No pretending it didn't happen.
+                </span>
+            </div>
+
+            <div class="effort">
+                <b>02 — I care about you.</b>
+                <span>
+                    More than my stupid actions sometimes manage to show.
+                </span>
+            </div>
+
+            <div class="effort">
+                <b>03 — I want to do better.</b>
+                <span>
+                    Not just say sorry and repeat the same mistake.
+                </span>
+            </div>
+
+            <div class="effort">
+                <b>04 — One request.</b>
+                <span>
+                    Please don't let one stupid moment define everything.
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- FINAL -->
+
+<section id="final">
+
+<div class="wrap verdict">
+
+    <div class="big-heart">❤️</div>
+
+    <div class="kicker">FINAL VERDICT</div>
+
+    <div class="final-message">
+        I choose you.<br>
+        And I'm sorry.
+    </div>
+
+    <div class="card">
+
+        <p>
+            Taru, I don't expect a website to magically fix
+            everything.
+        </p>
+
+        <p>
+            I just wanted to make something that shows you
+            I actually put thought into saying this.
+        </p>
+
+        <p>
+            I'm sorry for what I did.
+            I'm sorry for hurting you.
+            And I'm going to try to be better.
+        </p>
+
+        <p style="color:#ff9db3;font-size:20px;">
+            Will you forgive this idiot? 🥺
+        </p>
+
+        <button class="btn" onclick="forgive()">
+            Forgive Pranav ❤️
+        </button>
+
+        <div id="response" style="margin-top:20px;"></div>
+
+    </div>
+
+    <div class="signature">
+        Made with way too much love by Pranav.
+    </div>
+
+</div>
+
+</section>
 
 <script>
 
-function showApology(){
-  document.getElementById("apology").style.display="block";
+/* FORGIVENESS */
+
+function forgive(){
+
+    const response = document.getElementById("response");
+
+    response.innerHTML =
+    "🥹❤️ Case dismissed. Pranav promises to behave.";
+
+    for(let i=0;i<35;i++){
+
+        const heart=document.createElement("div");
+
+        heart.innerHTML=["❤️","💗","💕","💖","♡"]
+        [Math.floor(Math.random()*5)];
+
+        heart.style.position="fixed";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.bottom="-20px";
+        heart.style.fontSize=(15+Math.random()*25)+"px";
+        heart.style.zIndex="100";
+        heart.style.transition="transform 3s ease, opacity 3s ease";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.style.transform=
+            `translateY(-${window.innerHeight+100}px) rotate(${Math.random()*720}deg)`;
+            heart.style.opacity="0";
+        },50);
+
+        setTimeout(()=>heart.remove(),3100);
+    }
 }
 
-function finalMessage(){
-  document.getElementById("final").style.display="block";
+
+/* MUSIC */
+
+let audio;
+
+function createMusic(){
+
+    audio = new Audio("assets/music.mp3");
+
+    audio.loop=true;
+    audio.volume=.35;
+
+}
+
+createMusic();
+
+function toggleMusic(){
+
+    const btn=document.getElementById("musicBtn");
+    const text=document.getElementById("musicText");
+
+    if(audio.paused){
+
+        audio.play().then(()=>{
+
+            btn.innerHTML="❚❚";
+            text.innerHTML="Playing our soundtrack ❤️";
+
+        }).catch(()=>{
+
+            alert("Add your music file as assets/music.mp3 first ❤️");
+
+        });
+
+    }else{
+
+        audio.pause();
+
+        btn.innerHTML="▶";
+        text.innerHTML="Our little soundtrack";
+
+    }
+
 }
 
 </script>
