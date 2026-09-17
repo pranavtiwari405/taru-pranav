@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080914">
+<title>Taru × Pranav — The Apology Case</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--bg:#070812;--card:#101222e8;--gold:#e8c778;--rose:#f39aaa;--text:#f8f5ef;--muted:#b6b4c5;--line:#ffffff18}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -10%,#202542 0,#070812 48%,#04050b 100%);color:var(--text);font-family:Inter,sans-serif;overflow-x:hidden}
+button{font:inherit}.screen{display:none;min-height:100svh;padding:26px 18px 38px;align-items:center;justify-content:center;position:relative}.screen.active{display:flex;animation:in .65s ease both}@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0}.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.25;animation:twinkle 3s ease-in-out infinite alternate}@keyframes twinkle{to{opacity:.9;transform:scale(1.8)}}
+.moon{position:fixed;width:210px;height:210px;border-radius:50%;right:-85px;top:7%;background:radial-gradient(circle at 35% 35%,#fffde8,#d5cead 55%,#918a6f);opacity:.11;box-shadow:0 0 90px #fff1}
+.wrap{width:min(720px,100%);position:relative;z-index:1}.card{background:linear-gradient(145deg,#111426ef,#0b0d18ed);border:1px solid var(--line);border-radius:30px;padding:30px 21px;box-shadow:0 25px 100px #0009;backdrop-filter:blur(14px)}
+.center{text-align:center}.kicker{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800}h1,h2,h3{font-family:"Cormorant Garamond",serif}h1{font-size:clamp(50px,15vw,92px);line-height:.83;margin:16px 0}h2{font-size:clamp(38px,10vw,62px);line-height:.95;margin:12px 0}h3{font-size:29px;margin:0 0 7px}p{line-height:1.75;color:#d8d6e0}.gold{color:var(--gold)}.rose{color:var(--rose)}.serif{font-family:"Cormorant Garamond";font-size:27px}.divider{height:1px;background:var(--line);margin:24px 0}
+.btn{border:0;border-radius:999px;padding:14px 20px;margin:7px 3px;background:linear-gradient(135deg,#efd081,#cda653);color:#16120a;font-weight:800;cursor:pointer;box-shadow:0 10px 30px #e8c77822}.btn.secondary{background:#ffffff08;color:var(--text);border:1px solid var(--line);box-shadow:none}.btn.rose{background:linear-gradient(135deg,#f09aaa,#c86c80);color:#1c0b10}
+.file,.exhibit,.effort{border:1px solid var(--line);background:#ffffff05;border-radius:21px;padding:19px;margin:12px 0;cursor:pointer;transition:.25s}.file:hover,.exhibit:hover,.effort:hover{transform:translateY(-3px);border-color:#e8c77855}.file strong{font-size:10px;letter-spacing:.16em;color:var(--gold)}.file span{display:block;font-family:"Cormorant Garamond";font-size:27px;margin-top:5px}.reveal,.inside,.back{display:none;margin-top:13px;color:#d9d7e1;line-height:1.7}.open .reveal,.open .inside,.open .back{display:block;animation:in .35s ease}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:18px 0}.photo-grid img{width:100%;height:235px;object-fit:cover;border-radius:19px;border:1px solid var(--line);box-shadow:0 12px 35px #0008}.photo-grid img:first-child{grid-row:span 2;height:481px}.caption{font-family:"Cormorant Garamond";font-size:24px;color:var(--gold);margin:10px 0 20px}
+.charges div{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);color:#ddd}.charges b{color:var(--rose)}
+.efforts{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:500px){.efforts{grid-template-columns:1fr}}
+.clause{border:1px solid #e8c77855;border-radius:27px;padding:24px;background:radial-gradient(circle at 50% 0,#e8c77814,transparent 62%)}.clause-num{letter-spacing:.2em;color:var(--gold);font-size:11px;font-weight:800}.yes{font-family:"Cormorant Garamond";font-size:70px;color:var(--rose);line-height:.9}.status{font-size:11px;color:var(--muted);line-height:2}
+.verdict-box{padding:18px;border:1px solid var(--line);border-radius:20px;background:#ffffff04}.pulse{animation:pulse 1.3s ease-in-out infinite}@keyframes pulse{50%{box-shadow:0 0 35px #e8c77844}}.signature{font-family:"Cormorant Garamond";font-size:32px;color:var(--gold)}
+#musicPlayer{position:fixed;left:50%;bottom:15px;transform:translateX(-50%);z-index:50;display:none;width:min(520px,calc(100% - 24px));background:#111426f5;border:1px solid var(--line);border-radius:20px;padding:10px 12px;box-shadow:0 20px 60px #000a;backdrop-filter:blur(12px)}
+#musicPlayer iframe{width:100%;height:80px;border:0;border-radius:12px}
+.music-note{font-size:10px;color:var(--muted);text-align:center;margin-top:5px}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:60;transition:.35s}
+</style>
+</head>
+<body>
+<div id="stars"></div><div class="moon"></div><div id="progress"></div>
+
+<main>
+<section class="screen active" id="s1"><div class="wrap"><div class="card center">
+<div class="kicker">Confidential • Case File 01</div>
+<h1>TARU<br><span class="gold">×</span> PRANAV</h1>
+<div class="serif">The Apology Case</div><div class="divider"></div>
+<p>Hey, Moonlight. 🌙<br><br>Before you do anything… give me a few minutes.<br>There is something I need to tell you.</p>
+<button class="btn" onclick="go(2)">LET ME IN →</button>
+<div><button class="btn secondary" onclick="playSong()">🎵 Play our song</button></div>
+<p style="font-size:10px;color:var(--muted)">Music: “I Guess I'm in Love” — Clinton Kane</p>
+</div></div></section>
+
+<section class="screen" id="s2"><div class="wrap"><div class="card">
+<div class="kicker">Chapter I • Accountability</div><h2>I know what I did.</h2>
+<p>I'm not here to hide behind excuses. I'm here because I know I hurt you, and I am genuinely sorry.</p>
+<div class="file" onclick="toggle(this)"><strong>CASE FILE #01</strong><span>The Periods Incident</span><div class="reveal">I scolded you while you were on your periods. You deserved patience, care and understanding from me, and instead I made a difficult moment worse.<br><br><b>You did not deserve that from me.</b><br><br>I'm sorry, Taru. ❤️</div></div>
+<div class="file" onclick="toggle(this)"><strong>CASE FILE #02</strong><span>The Afternoon Incident</span><div class="reveal">You had clearly told me <b>no</b>, and I still did something I wasn't supposed to do. That was wrong. I should have respected your no immediately and completely.<br><br>I'm not going to make excuses for it. <b>I'm sorry.</b> ❤️</div></div>
+<p class="small" style="font-size:11px;color:var(--muted)">Tap each case file before continuing.</p>
+<button class="btn" onclick="go(3)">NO EXCUSES →</button>
+</div></div></section>
+
+<section class="screen" id="s3"><div class="wrap"><div class="card center">
+<div class="kicker">Chapter II • What I mean</div><h2>I'm not asking you to forget.</h2>
+<p>I'm not asking you to suddenly stop being upset. I'm asking for the chance to show you that I can do better.</p>
+<p>Because you're not someone I ever want to hurt.</p>
+<div class="serif gold">You're my Moonlight. 🌙</div><div class="divider"></div>
+<p>And before the court sees the case… I want you to see <i>us</i>.</p>
+<button class="btn" onclick="go(4)">SHOW ME →</button>
+</div></div></section>
+
+<section class="screen" id="s4"><div class="wrap"><div class="card">
+<div class="kicker">Chapter III • Evidence of us</div><h2>The little memories.</h2>
+<p>Some of my favourite memories aren't huge moments. They're the little things that became <i>ours</i>.</p>
+<div class="photo-grid">
+<img src="assets/memory1.jpeg" alt="Taru and Pranav by the sea">
+<img src="assets/memory2.jpeg" alt="Taru and Pranav together">
+<img src="assets/memory3.jpeg" alt="Taru and Pranav">
+</div>
+<div class="caption">“Somewhere between these moments, you became home.”</div>
+<div class="exhibit" onclick="toggle(this)"><b>EXHIBIT A — The first coffee ☕</b><div class="inside">Taru making her first coffee for me in the park. A tiny moment, but one I remember because it felt so simple and so special.</div></div>
+<div class="exhibit" onclick="toggle(this)"><b>EXHIBIT B — The first kiss 🌊</b><div class="inside">Our first kiss on the beach terrace in Chennai. One of those moments I know I'm going to remember for a very, very long time.</div></div>
+<div class="exhibit" onclick="toggle(this)"><b>EXHIBIT C — Us</b><div class="inside">Three photos. Two people. A whole lot of memories still waiting to happen.</div></div>
+<button class="btn" onclick="go(5)">ENTER COURTROOM ⚖️</button>
+</div></div></section>
+
+<section class="screen" id="s5"><div class="wrap"><div class="card">
+<div class="kicker">Chapter IV • The Case</div><div class="center"><p class="kicker">THE PEOPLE</p><h1 style="font-size:56px">vs.</h1><h2 class="rose">PRANAV</h2><p class="small">THE DEFENDANT</p></div>
+<div class="divider"></div><h2 style="font-size:44px">The charges.</h2>
+<div class="charges"><div><b>01</b> Scolding Taru when she needed understanding.</div><div><b>02</b> Doing something after Taru had clearly said no.</div><div><b>03</b> Being an absolute idiot. 😭</div><div><b>04</b> Making Moonlight sad.</div></div>
+<div class="divider"></div><p class="center">Defendant Pranav, how do you plead?</p><div class="center"><button class="btn rose" onclick="go(6)">GUILTY. 😭</button></div>
+</div></div></section>
+
+<section class="screen" id="s6"><div class="wrap"><div class="card center">
+<div class="kicker">Plea accepted</div><h2>The court has heard enough.</h2>
+<p class="serif">“I messed up. I hurt her. I want to make it right.”</p>
+<div class="divider"></div><p>The court will now consider the defendant's proposed rehabilitation plan.</p>
+<button class="btn" onclick="go(7)">VIEW THE EFFORTS →</button>
+</div></div></section>
+
+<section class="screen" id="s7"><div class="wrap"><div class="card">
+<div class="kicker">Chapter V • Rehabilitation</div><h2>My special efforts.</h2>
+<p>Not just “sorry”. Things I actually want to do to make you feel loved, heard and cared for.</p>
+<div class="efforts">
+<div class="effort" onclick="toggle(this)"><h3>🌹 Proper Date</h3><div class="back">No distractions. You choose the vibe; I'll handle the planning. The only goal: making a beautiful memory with you.</div></div>
+<div class="effort" onclick="toggle(this)"><h3>💌 Handwritten Letter</h3><div class="back">A real letter, written by hand, with the things I sometimes fail to say properly out loud.</div></div>
+<div class="effort" onclick="toggle(this)"><h3>🎧 Our Playlist</h3><div class="back">Songs that remind me of you, us, Chennai, the silly moments and the soft ones.</div></div>
+<div class="effort" onclick="toggle(this)"><h3>🫂 You Talk, I Listen</h3><div class="back">One completely judgment-free conversation where you get to say everything and I listen instead of defending myself.</div></div>
+</div>
+<div class="divider"></div><button class="btn" onclick="go(8)">THE COURT HAS ONE FINAL CLAUSE →</button>
+</div></div></section>
+
+<section class="screen" id="s8"><div class="wrap"><div class="card center">
+<div class="kicker">CONFIDENTIAL • CLAUSE 08</div><div class="clause">
+<div class="clause-num">THE 72-HOUR TARU ACT</div><div class="yes">YES.</div>
+<h2>24 × 3 = 72 HOURS</h2>
+<p>For three full days, Pranav is officially on a <b>Taru Pass.</b></p>
+<p style="font-family:'Cormorant Garamond';font-size:29px;color:var(--gold)">Taru asks. Pranav says: YES. ❤️</p>
+<p>No unnecessary conditions.<br>No negotiations.<br>No loopholes.<br>No “but…”<br>No complaints. 😂</p>
+<div class="divider"></div><div class="status">DURATION: 72 HOURS<br>AUTHORITY: TARU 🌙<br>APPEAL: DENIED ❌<br>ESCAPE CLAUSE: DOES NOT EXIST 💀</div>
+</div><button class="btn" onclick="go(9)">I ACCEPT MY FATE 😭</button>
+</div></div></section>
+
+<section class="screen" id="s9"><div class="wrap"><div class="card center">
+<div class="kicker">Chapter VI • The Verdict</div><h2>Judge Taru…</h2>
+<p>I know saying sorry doesn't magically fix everything.</p><p>But I mean it.</p>
+<p>I'm sorry for hurting you. I'm sorry for not being understanding when I should have been. And I'm sorry for not respecting your “no” when I should have.</p>
+<p><b>I can't change those moments.</b><br>But I can change what I do from here.</p>
+<p>And I want to prove that to you.</p><div class="signature">— Pranav ❤️</div><div class="divider"></div>
+<p class="serif">What is your verdict?</p>
+<button class="btn" onclick="verdict('yes')">FORGIVE PRANAV ❤️</button>
+<button class="btn secondary" onclick="verdict('time')">I NEED SOME TIME 🥺</button>
+</div></div></section>
+
+<section class="screen" id="s10"><div class="wrap"><div class="card center">
+<div class="kicker">Court Order</div><h2 id="finalTitle"></h2><p id="finalText"></p><div class="divider"></div>
+<h2 class="gold">Wait…</h2><p>There's still one more thing.</p><button class="btn" onclick="go(11)">OPEN THE LAST SURPRISE 🎁</button>
+</div></div></section>
+
+<section class="screen" id="s11"><div class="wrap"><div class="card center">
+<div class="kicker">FINAL SURPRISE • SEALED BY THE COURT</div>
+<h1 style="font-size:58px">THE 72-HOUR PASS</h1>
+<p class="serif">Granted to: <span class="gold">Taru 🌙</span><br>Issued by: <span class="gold">Pranav</span></p>
+<div class="clause">
+<h2 class="gold">72 HOURS.</h2>
+<p>Three complete days where the official rule is simple:</p>
+<div class="yes">YES.</div>
+<p>Choose the food.<br>Choose the movie.<br>Choose the plans.<br>Choose the chaos.<br>Choose the little things.</p>
+<p>And Pranav gets one job:</p>
+<p class="serif gold">Make Taru smile. ❤️</p>
+</div>
+<div class="divider"></div>
+<div id="passStatus" class="status">THE PASS IS SEALED.<br>It only starts when Taru chooses to activate it.</div>
+<div id="countdown" style="display:none;font-family:'Cormorant Garamond';font-size:35px;color:var(--rose);margin:15px 0">72:00:00:00</div>
+<button class="btn" id="activateBtn" onclick="activatePass()">ACTIVATE MY 72-HOUR PASS 🌙</button>
+<div class="divider"></div>
+<div id="certificate" style="display:none" class="verdict-box">
+<div class="kicker">OFFICIAL COURT CERTIFICATE</div>
+<h3 class="gold">TARU PASS • 72 HOURS</h3>
+<p>Authority: <b>Taru</b><br>Defendant: <b>Pranav</b><br>Status: <span class="rose"><b>ACTIVE</b></span></p>
+<p>Terms: one very patient, very attentive, very loving Pranav for three full days. ❤️</p>
+</div>
+<p>Valid for one Moonlight.<br>Non-transferable.<br>Lifetime sentimental value. 🌙</p>
+<p class="signature">With love,<br>Pranav</p>
+<div id="secret" style="display:none;margin-top:24px">
+<div class="divider"></div>
+<div class="kicker">SECRET MESSAGE UNLOCKED</div>
+<p class="serif gold">P.S. I don't actually need a court order to choose you. I would choose you anyway. ❤️</p>
+</div>
+</div></div></section>
+</main>
+
+<div id="musicPlayer">
+<iframe id="yt" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+<div class="music-note">I GUESS I'M IN LOVE — Clinton Kane</div>
+</div>
+
+<script>
+let current=1,total=11;
+function go(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById('s'+n).classList.add('active');current=n;document.getElementById('progress').style.width=((n-1)/(total-1)*100)+'%';scrollTo({top:0,behavior:'smooth'})}
+function toggle(el){el.classList.toggle('open')}
+function verdict(t){
+ document.getElementById('finalTitle').textContent=t==='yes'?'CASE… KIND OF CLOSED. ❤️':'TIME GRANTED. 🥺';
+ document.getElementById('finalText').textContent=t==='yes'?'Thank you for giving Pranav the chance to make things right. Now comes the important part: proving the apology through actions.':'Take all the time you need, Taru. No pressure. No guilt. I will respect your feelings and still be here.';
+ go(10);
+}
+function playSong(){
+ const p=document.getElementById('musicPlayer');
+ document.getElementById('yt').src='https://www.youtube.com/embed/SJsGISX8O8k?autoplay=1&rel=0';
+ p.style.display='block';
+}
+let timerHandle=null;
+function activatePass(){
+ const key='taru72_start';
+ let start=localStorage.getItem(key);
+ if(!start){ start=Date.now().toString(); localStorage.setItem(key,start); }
+ document.getElementById('activateBtn').style.display='none';
+ document.getElementById('certificate').style.display='block';
+ document.getElementById('countdown').style.display='block';
+ document.getElementById('countdown').classList.add('pulse');
+ document.getElementById('passStatus').innerHTML='<span class="gold"><b>PASS ACTIVE.</b></span><br>The clock is officially running. Good luck, Pranav. 😭';
+ document.getElementById('secret').style.display='block';
+ burst();
+ updateTimer();
+ if(timerHandle) clearInterval(timerHandle);
+ timerHandle=setInterval(updateTimer,1000);
+}
+function updateTimer(){
+ const start=parseInt(localStorage.getItem('taru72_start')||'0',10);
+ if(!start) return;
+ const left=Math.max(0,72*60*60*1000-(Date.now()-start));
+ const d=Math.floor(left/86400000),h=Math.floor(left%86400000/3600000),m=Math.floor(left%3600000/60000),s=Math.floor(left%60000/1000);
+ document.getElementById('countdown').textContent=
+   String(d).padStart(2,'0')+':'+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+ if(left===0){clearInterval(timerHandle);document.getElementById('passStatus').innerHTML='<span class="gold"><b>72 HOURS COMPLETED. ❤️</b></span><br>Case permanently archived.';}
+}
+function burst(){
+ for(let i=0;i<55;i++){
+  const e=document.createElement('i'); e.style.position='fixed'; e.style.left='50%'; e.style.top='50%';
+  e.style.width='7px';e.style.height='7px';e.style.borderRadius='50%';e.style.background='white';
+  e.style.zIndex='100';e.style.pointerEvents='none';
+  const a=Math.random()*Math.PI*2,r=80+Math.random()*260;
+  e.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:1},{transform:`translate(calc(-50% + ${Math.cos(a)*r}px),calc(-50% + ${Math.sin(a)*r}px)) scale(.2)`,opacity:0}],{duration:1000+Math.random()*900,easing:'cubic-bezier(.2,.8,.2,1)'});
+  document.body.appendChild(e);setTimeout(()=>e.remove(),2100);
+ }
+}
+(function restorePass(){
+ if(localStorage.getItem('taru72_start')){
+   setTimeout(activatePass,150);
+ }
+})();
+for(let i=0;i<100;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';s.style.animationDuration=(2+Math.random()*4)+'s';document.getElementById('stars').appendChild(s)}
+</script>
+</body>
+</html>
